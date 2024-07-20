@@ -13,7 +13,8 @@
     "zip:firefox": "wxt zip -b firefox",
     "compile": "tsc --noEmit",
     "postinstall": "wxt prepare",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -26,8 +27,10 @@
     "@typescript-eslint/parser": "^7.16.1",
     "@wxt-dev/module-react": "^1.0.0",
     "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.8",
+    "prettier": "^3.3.3",
     "typescript": "^5.5.2",
     "wxt": "^0.18.10"
   }
