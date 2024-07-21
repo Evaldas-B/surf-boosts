@@ -1,3 +1,6 @@
+import { MantineProvider } from "@mantine/core"
+import "@mantine/core/styles.css"
+
 export default function App() {
-  return "Popup"
+  return <MantineProvider defaultColorScheme="auto">Popup</MantineProvider>
 }
