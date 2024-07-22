@@ -1,5 +1,7 @@
+import navigationStorageItem from "../navigation"
+
 const storageItems = {
-  NAVIGATION: storage.defineItem("local:NAVIGATION", { defaultValue: "/" }),
+  NAVIGATION: navigationStorageItem,
 } as const
 
 export type StorageItems = typeof storageItems
