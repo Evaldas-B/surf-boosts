@@ -1,12 +1,9 @@
-import storageItems from "./storage"
+import storage from "./storage"
 
-export default function useStorage<K extends keyof typeof storageItems>(
+export default function useStorage<K extends keyof typeof storage>(
   key: K,
-): [
-  (typeof storageItems)[K]["defaultValue"],
-  (typeof storageItems)[K]["setValue"],
-] {
-  const storageItem = storageItems[key]
+): [(typeof storage)[K]["defaultValue"], (typeof storage)[K]["setValue"]] {
+  const storageItem = storage[key]
 
   const [state, setState] = useState(storageItem.defaultValue)
 

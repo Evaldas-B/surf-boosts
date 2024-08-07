@@ -1,8 +1,8 @@
 import useStorage from "@/utils/storage/useStorage"
-import IndexPage from "./index-page"
-import BoostPage from "./boost-page"
-import BoostPackPage from "./boost-pack-page"
-import BoostsRepoPage from "./boosts-repo-page"
+import IndexPage from "./index-page/index-page"
+import BoostPage from "./boost-page/boost-page"
+import BoostPackPage from "./boost-pack-page/boost-pack-page"
+import BoostsRepoPage from "./boosts-repo-page/boosts-repo-page"
 
 export default function PageRenderer() {
   const [navigation] = useStorage("NAVIGATION")

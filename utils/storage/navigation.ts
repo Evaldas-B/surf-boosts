@@ -1,3 +1,5 @@
+import { storage } from "wxt/storage"
+
 export type Navigation =
   | { path: "/" }
   | { path: "/boost"; props: { boostId: string } }

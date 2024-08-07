@@ -1,0 +1,70 @@
+import { ExtractNavigationProps } from "@/utils/storage/navigation"
+import useStorage from "@/utils/storage/useStorage"
+import { groupBy, uniq } from "lodash-es"
+import { useColorScheme } from "@mantine/hooks"
+import { Select } from "@mantine/core"
+import Boost from "./Boost"
+
+type Props = {
+  navigation: ExtractNavigationProps<"/boost-pack">
+}
+
+export default function BoostPackPage({ navigation }: Props) {
+  const [boosts] = useStorage("BOOSTS")
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+
+  const packId = navigation.props.boostPackId
+
+  const categoryBoosts = boosts.filter(
+    (b) => b.pack === packId && b.category === selectedCategory,
+  )
+  const groupedBoosts = groupBy(categoryBoosts, "group")
+  const colorScheme = useColorScheme()
+
+  const categories = useMemo(
+    () =>
+      uniq(boosts.filter((b) => b.pack === packId).map((b) => b.category)) ||
+      [],
+    [boosts, packId],
+  )
+
+  // Initialize select
+  const selectInitializedRef = useRef(false)
+
+  useEffect(() => {
+    if (selectInitializedRef.current) return
+
+    if (categories.length > 0) {
+      const [category] = categories
+      setSelectedCategory(category!)
+      selectInitializedRef.current = true
+    }
+  }, [categories])
+
+  return (
+    <>
+      <Select
+        className="mt-3"
+        label="Category"
+        allowDeselect={false}
+        data={categories}
+        value={selectedCategory}
+        onChange={setSelectedCategory}
+      />
+
+      {Object.keys(groupedBoosts).map((group) => (
+        <div data-testid="group" key={group}>
+          <h3 className="mb-1 mt-3 text-sm uppercase">{group}</h3>
+
+          <div
+            className={`flex flex-col gap-2 rounded-xl ${colorScheme === "dark" ? "bg-gray-700" : "bg-gray-200"} p-3`}
+          >
+            {groupedBoosts[group]?.map((boost) => (
+              <Boost key={boost.id} boost={boost} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </>
+  )
+}
