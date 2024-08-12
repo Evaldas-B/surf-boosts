@@ -20,6 +20,11 @@ const boost: Boost = {
         var(--ytd-watch-flexy-height-ratio)
     ) !important;
   }
+
+  /* Mobile */
+  ytd-item-section-renderer {
+    display: none;
+  }
   `,
 }
 

@@ -3,7 +3,7 @@
   "description": "Allows to remove unnecessary elements from YouTube",
   "url": "min-youtube",
   "version": "0.0.2",
-  "updatedAt": "2024-08-12T08:20:07.808Z",
+  "updatedAt": "2024-08-12T10:52:57.778Z",
   "boosts": [
     {
       "id": "isuf96nut9jxmxeinlipt21m",
@@ -83,7 +83,7 @@
       "pack": "MinYoutube",
       "category": "Video Page",
       "group": "Sidebar",
-      "css": "\n  #secondary.ytd-watch-flexy {\n    display: none;\n  }\n  /* Center video when sidebar is hidden */\n  ytd-watch-flexy[flexy][is-two-columns_]:not([fullscreen]):not([theater]) {\n    --ytd-watch-flexy-max-player-width: calc(\n      var(--ytd-watch-flexy-chat-max-height) * var(--ytd-watch-flexy-width-ratio) /\n        var(--ytd-watch-flexy-height-ratio)\n    ) !important;\n  }\n  "
+      "css": "\n  #secondary.ytd-watch-flexy {\n    display: none;\n  }\n  /* Center video when sidebar is hidden */\n  ytd-watch-flexy[flexy][is-two-columns_]:not([fullscreen]):not([theater]) {\n    --ytd-watch-flexy-max-player-width: calc(\n      var(--ytd-watch-flexy-chat-max-height) * var(--ytd-watch-flexy-width-ratio) /\n        var(--ytd-watch-flexy-height-ratio)\n    ) !important;\n  }\n\n  /* Mobile */\n  ytd-item-section-renderer {\n    display: none;\n  }\n  "
     },
     {
       "id": "eammwn3j8iqga3tcgo8evpw9",
