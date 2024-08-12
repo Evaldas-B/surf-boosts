@@ -3,14 +3,14 @@
     "name": "MinYoutube",
     "url": "min-youtube",
     "description": "Allows to remove unnecessary elements from YouTube",
-    "version": "0.0.1",
-    "updatedAt": "2024-08-07T11:11:34.264Z"
+    "version": "0.0.2",
+    "updatedAt": "2024-08-12T08:20:07.808Z"
   },
   {
     "name": "Example",
     "url": "example",
     "description": "Example pack",
     "version": "0.0.1",
-    "updatedAt": "2024-08-07T11:11:34.266Z"
+    "updatedAt": "2024-08-12T08:20:07.802Z"
   }
 ]
