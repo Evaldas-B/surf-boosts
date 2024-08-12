@@ -10,6 +10,7 @@ import { uniq } from "lodash-es"
 import useStorage from "@/utils/storage/useStorage"
 import { useBoostFormContext } from "./boost-form-context"
 import ConfirmDeleteInline from "../../components/ConfirmDeleteInline"
+import ReadOnlyAccessAlert from "./ReadOnlyAccess"
 
 export default function ConfigTab() {
   const form = useBoostFormContext()
@@ -54,6 +55,8 @@ export default function ConfigTab() {
     })
   }
 
+  const { isPublic } = form.getValues()
+
   return (
     <div className="flex flex-col gap-1">
       {import.meta.env.MODE === "e2e" && (
@@ -63,37 +66,53 @@ export default function ConfigTab() {
         </>
       )}
 
-      <TextInput label="Boost name" {...form.getInputProps("name")} />
+      <TextInput
+        label="Boost name"
+        disabled={isPublic}
+        {...form.getInputProps("name")}
+      />
       <TagsInput
         label="Match Patterns"
         placeholder="*://*.example.com/*"
+        disabled={isPublic}
         {...form.getInputProps("matchPatterns")}
       />
 
-      <Autocomplete label="Pack" data={packs} {...form.getInputProps("pack")} />
+      <Autocomplete
+        label="Pack"
+        data={packs}
+        disabled={isPublic}
+        {...form.getInputProps("pack")}
+      />
 
       <Autocomplete
         label="Category"
         data={categories}
+        disabled={isPublic}
         {...form.getInputProps("category")}
       />
 
       <Autocomplete
         label="Group"
         data={groups}
+        disabled={isPublic}
         {...form.getInputProps("group")}
       />
 
-      <div className="mt-3 flex gap-3">
-        <ConfirmDeleteInline
-          onDelete={deleteBoost}
-          message="Delete this boost?"
-        />
+      {isPublic ? (
+        <ReadOnlyAccessAlert className="mt-5" />
+      ) : (
+        <div className="mt-3 flex gap-3">
+          <ConfirmDeleteInline
+            onDelete={deleteBoost}
+            message="Delete this boost?"
+          />
 
-        <Button title="Save boost" type="submit" className="w-full">
-          Save
-        </Button>
-      </div>
+          <Button title="Save boost" type="submit" className="w-full">
+            Save
+          </Button>
+        </div>
+      )}
     </div>
   )
 }

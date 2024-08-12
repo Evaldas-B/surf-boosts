@@ -1,15 +1,13 @@
 import { expect, test } from "./fixtures"
 import redH1 from "./mocks/boosts/example.com/redH1"
 import addBoost from "./utils/addBoost"
+import installPack from "./utils/installPack"
 
 test("Public pack names do not appear during boost creation", async ({
   page,
   extensionId,
 }) => {
-  const publicBoost = redH1()
-  publicBoost.isPublic = true
-  publicBoost.pack = "Public Pack"
-  await addBoost({ page, extensionId, boost: publicBoost })
+  await installPack({ page, extensionId, packName: "Example" })
 
   const privateBoost = redH1()
   privateBoost.isPublic = false
