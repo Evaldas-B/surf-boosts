@@ -15,6 +15,9 @@ export default function PackInstaller({ packUrl }: Props) {
   const [installedPublicPacks, setInstalledPublicPacks] = useStorage(
     "INSTALLED_PUBLIC_PACKS",
   )
+  const [disabledPacks, setDisabledPacks] = useStorage("DISABLED_PACKS")
+  const [enabledBoostsIds, setEnabledBoostsIds] =
+    useStorage("ENABLED_BOOSTS_IDS")
 
   async function registerBoostPack(packUrl: string) {
     const pack = await fetchPackByUrl(packUrl, setNetworkStatus)
@@ -24,13 +27,21 @@ export default function PackInstaller({ packUrl }: Props) {
     setBoosts([...boosts, ...pack.boosts])
   }
 
-  async function deregisterBoostPack(packUrl: string) {
+  async function uninstallBoostPack(packUrl: string) {
     const pack = await fetchPackByUrl(packUrl, setNetworkStatus)
     if (!pack) return
     const boostsIdsToRemove = pack.boosts.map((boost) => boost.id)
 
     setInstalledPublicPacks(
       installedPublicPacks.filter((pack) => pack !== packUrl),
+    )
+
+    setDisabledPacks(
+      disabledPacks.filter((disabledPack) => disabledPack !== pack.name),
+    )
+
+    setEnabledBoostsIds(
+      enabledBoostsIds.filter((id) => !boostsIdsToRemove.includes(id)),
     )
 
     setBoosts(boosts.filter((boost) => !boostsIdsToRemove.includes(boost.id)))
@@ -54,7 +65,7 @@ export default function PackInstaller({ packUrl }: Props) {
       onClick={() =>
         !installedPublicPacks.includes(packUrl)
           ? registerBoostPack(packUrl)
-          : deregisterBoostPack(packUrl)
+          : uninstallBoostPack(packUrl)
       }
     >
       {buttonContent()}

@@ -16,7 +16,7 @@ test("Allows toggling boost on/off", async ({ page, extensionId }) => {
     boostIdentifiers: { name: redH1.name },
   })
 
-  expectBoostToBeToggled({ page, packName: redH1.name, toggleState: false })
+  expectBoostToBeToggled({ page, boostName: redH1.name, toggleState: false })
 
   // Check if css was removed
   await page.goto("https://example.com/")

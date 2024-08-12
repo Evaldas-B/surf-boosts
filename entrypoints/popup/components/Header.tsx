@@ -10,7 +10,7 @@ export default function Header() {
     <>
       <header className="flex items-center justify-between gap-3">
         <ActionIcon
-          title="Install Boost"
+          title="Install Boosts"
           variant="light"
           size="lg"
           onClick={() => setNavigation({ path: "/boosts-repo" })}

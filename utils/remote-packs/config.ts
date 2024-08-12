@@ -5,4 +5,5 @@ const productionUrl =
 
 const devUrl = "http://localhost:3001/"
 
-export const baseUrl = import.meta.env.DEV ? devUrl : productionUrl
+export const baseUrl =
+  import.meta.env.DEV || import.meta.env.MODE === "e2e" ? devUrl : productionUrl

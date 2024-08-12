@@ -9,9 +9,7 @@
       "id": "kx9qg6k2dxukb8pm7u3bgcu8",
       "isPublic": true,
       "name": "Red H1",
-      "matchPatterns": [
-        "*://*.example.com/*"
-      ],
+      "matchPatterns": ["*://*.example.com/*"],
       "pack": "Example",
       "category": "Index Page",
       "group": "Header styling",
@@ -21,9 +19,7 @@
       "id": "oyc3jihc4tlvxkrh4o8i85px",
       "isPublic": true,
       "name": "Update H1",
-      "matchPatterns": [
-        "*://*.example.com/*"
-      ],
+      "matchPatterns": ["*://*.example.com/*"],
       "pack": "Example",
       "category": "Index Page",
       "group": "Macros",

@@ -9,9 +9,7 @@
       "id": "isuf96nut9jxmxeinlipt21m",
       "isPublic": true,
       "name": "Hide posts",
-      "matchPatterns": [
-        "*://*.youtube.com/results?*"
-      ],
+      "matchPatterns": ["*://*.youtube.com/results?*"],
       "pack": "MinYoutube",
       "category": "Search Page",
       "group": "Results filtering",
@@ -21,9 +19,7 @@
       "id": "cdqf12f4fvuzxjzen0oi1yg1",
       "isPublic": true,
       "name": "Hide comments",
-      "matchPatterns": [
-        "*://*.youtube.com/watch*"
-      ],
+      "matchPatterns": ["*://*.youtube.com/watch*"],
       "pack": "MinYoutube",
       "category": "Video Page",
       "group": "Comments",
@@ -33,9 +29,7 @@
       "id": "f9si9qwh81fq3iefk47rhv07",
       "isPublic": true,
       "name": "Hide end cards",
-      "matchPatterns": [
-        "*://*.youtube.com/watch*"
-      ],
+      "matchPatterns": ["*://*.youtube.com/watch*"],
       "pack": "MinYoutube",
       "category": "Video Page",
       "group": "Player",
@@ -45,9 +39,7 @@
       "id": "yclsx5tjn97acnysxfmvfxv9",
       "isPublic": true,
       "name": "Hide mixes",
-      "matchPatterns": [
-        "*://*.youtube.com/results?*"
-      ],
+      "matchPatterns": ["*://*.youtube.com/results?*"],
       "pack": "MinYoutube",
       "category": "Search Page",
       "group": "Results filtering",
@@ -57,9 +49,7 @@
       "id": "isdk66938exn058e6hiwbpb7",
       "isPublic": true,
       "name": "Hide navbar",
-      "matchPatterns": [
-        "*://*.youtube.com/*"
-      ],
+      "matchPatterns": ["*://*.youtube.com/*"],
       "pack": "MinYoutube",
       "category": "Global",
       "group": "Navbar",
@@ -69,9 +59,7 @@
       "id": "wiehduip7tux25wvx0a6zxeh",
       "isPublic": true,
       "name": "Hide playlists",
-      "matchPatterns": [
-        "*://*.youtube.com/results?*"
-      ],
+      "matchPatterns": ["*://*.youtube.com/results?*"],
       "pack": "MinYoutube",
       "category": "Search Page",
       "group": "Results filtering",
@@ -81,9 +69,7 @@
       "id": "ug0pxslgzo8xsas7rtydp8nd",
       "isPublic": true,
       "name": "Hide shorts",
-      "matchPatterns": [
-        "*://*.youtube.com/*"
-      ],
+      "matchPatterns": ["*://*.youtube.com/*"],
       "pack": "MinYoutube",
       "category": "Search Page",
       "group": "Results filtering",
@@ -93,9 +79,7 @@
       "id": "w7rgdjhf1ssx8y77b98jmteo",
       "isPublic": true,
       "name": "Hide video sidebar",
-      "matchPatterns": [
-        "*://*.youtube.com/watch*"
-      ],
+      "matchPatterns": ["*://*.youtube.com/watch*"],
       "pack": "MinYoutube",
       "category": "Video Page",
       "group": "Sidebar",
@@ -105,9 +89,7 @@
       "id": "eammwn3j8iqga3tcgo8evpw9",
       "isPublic": true,
       "name": "Hide your youtube history is off",
-      "matchPatterns": [
-        "*://*.youtube.com/*"
-      ],
+      "matchPatterns": ["*://*.youtube.com/*"],
       "pack": "MinYoutube",
       "category": "Global",
       "group": "Annoyances",

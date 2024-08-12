@@ -12,6 +12,7 @@ export default async function togglePack({
   packName: string
 }) {
   await page.goto(`chrome-extension://${extensionId}/popup.html`)
+  await page.getByTitle("BoostPacks page").click()
 
   await page.waitForTimeout(500)
 
