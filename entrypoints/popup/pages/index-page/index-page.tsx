@@ -11,6 +11,8 @@ export default function IndexPage() {
 
   return (
     <div className="mt-3 flex flex-col gap-3">
+      <h3 className="text-center font-medium">My Boosts</h3>
+
       {packs.length > 0 &&
         packs.map((pack) => <BoostPack key={pack} name={pack} />)}
 

@@ -5,10 +5,12 @@ import PackInstaller from "./PackInstaller"
 import { Pack } from "@/packs-builder/types"
 import { NetworkStatus } from "@/utils/remote-packs/config"
 import { fetchPacksIndex } from "@/utils/remote-packs/fetchPacksIndex"
+import useStorage from "@/utils/storage/useStorage"
 
 export default function BoostsRepoPage() {
   const [packsIndex, setPacksIndex] = useState<Pack[]>([])
   const [networkStatus, setNetworkStatus] = useState<NetworkStatus>("idle")
+  const [_navigation, setNavigation] = useStorage("NAVIGATION")
 
   useEffect(() => {
     async function fetch() {
@@ -21,6 +23,7 @@ export default function BoostsRepoPage() {
 
   return (
     <div className="flex flex-col p-3">
+      <h3 className="text-center font-medium">Boosts Marketplace</h3>
       {networkStatus === "loading" && <Loader className="mx-auto mt-5" />}
       {networkStatus === "error" && (
         <p className="mt-5 text-center text-red-400">
@@ -32,7 +35,13 @@ export default function BoostsRepoPage() {
           {packsIndex.map((pack) => (
             <li
               key={pack.url}
-              className="mb-4 flex items-center justify-between"
+              className="mb-4 flex cursor-pointer items-center justify-between text-blue-500"
+              onClick={() =>
+                setNavigation({
+                  path: "/remote-boost-pack",
+                  props: { boostPackUrl: pack.url },
+                })
+              }
             >
               <h3 className="font-bold">{pack.name}</h3>
               <PackInstaller packUrl={pack.url} />

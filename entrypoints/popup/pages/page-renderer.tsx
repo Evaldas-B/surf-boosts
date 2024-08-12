@@ -3,6 +3,7 @@ import IndexPage from "./index-page/index-page"
 import BoostPage from "./boost-page/boost-page"
 import BoostPackPage from "./boost-pack-page/boost-pack-page"
 import BoostsRepoPage from "./boosts-repo-page/boosts-repo-page"
+import RemoteBoostsPackPage from "./remote-boosts-pack-page/remote-boosts-pack-pages"
 
 export default function PageRenderer() {
   const [navigation] = useStorage("NAVIGATION")
@@ -16,6 +17,8 @@ export default function PageRenderer() {
       return <BoostPackPage navigation={navigation} />
     case "/boosts-repo":
       return <BoostsRepoPage />
+    case "/remote-boost-pack":
+      return <RemoteBoostsPackPage navigation={navigation} />
     default:
       return <div>404</div>
   }
