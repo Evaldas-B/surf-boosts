@@ -1,8 +1,8 @@
 {
-  "name": "wxt-starter",
-  "description": "manifest.json description",
+  "name": "SurfBoosts",
+  "description": "This tool lets you inject custom CSS and JavaScript into any website, allowing you to customize the appearance of webpages or add new features. It also connects to a public marketplace where you can download additional Boosts",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "wxt",
