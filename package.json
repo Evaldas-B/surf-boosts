@@ -18,8 +18,9 @@
     "test": "vitest",
     "test:e2e": "wxt build -m e2e && playwright test",
     "pre-commit": "pnpm format && pnpm lint && pnpm compile && pnpm test:e2e",
-    "packs:build": "rm -rf ./built-packs & pnpm tsx ./packs-builder/builder.ts",
-    "packs:serve": "pnpm exec serve ./built-packs/ -p 3001"
+    "packs:build-prod": "rm -rf ./built-packs & pnpm tsx ./packs-builder/builder.ts",
+    "packs:build-dev": "rm -rf ./built-packs-dev && pnpm tsx ./packs-builder/builder.ts --dev",
+    "packs:serve-dev": "pnpm exec serve ./built-packs-dev/ -p 3001"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",

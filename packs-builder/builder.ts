@@ -3,17 +3,12 @@ import { groupBy, mapValues } from "lodash-es"
 
 import { packSchema } from "./types"
 import { boostSchema } from "@/utils/storage/boosts"
+import { Dirent } from "fs"
+import { argv } from "process"
 
-async function readPackFiles() {
-  const dirents = await readdir("./packs-repo", {
-    withFileTypes: true,
-    recursive: true,
-  })
+const isDev = argv.includes("--dev")
 
-  const files = dirents.filter(
-    (dirent) => dirent.isFile() && dirent.name.endsWith(".ts"),
-  )
-
+async function getBoostFilesWithContent(files: Dirent[]) {
   const boostFiles = files.filter((file) => file.name !== "_pack.ts")
 
   const boostFilesWithContent = await Promise.all(
@@ -27,6 +22,10 @@ async function readPackFiles() {
     }),
   )
 
+  return boostFilesWithContent
+}
+
+async function getPackFilesWithContent(files: Dirent[]) {
   const packFiles = files.filter((file) => file.name === "_pack.ts")
 
   const packFilesWithContent = await Promise.all(
@@ -40,10 +39,33 @@ async function readPackFiles() {
     }),
   )
 
+  return packFilesWithContent
+}
+
+async function readPackFiles() {
+  const dirents = await readdir("./packs-repo", {
+    withFileTypes: true,
+    recursive: true,
+  })
+
+  const files = dirents.filter((dirent) => {
+    return (
+      dirent.isFile() &&
+      dirent.name.endsWith(".ts") &&
+      (isDev || !dirent.parentPath.split("/")[1]!.startsWith("_"))
+    )
+  })
+
+  // Expecting not to receive files whose parent dir starts with underscore in dev mode. What is the issue here?
+  console.log(files.map((f) => f.parentPath))
+
+  const boostFilesWithContent = await getBoostFilesWithContent(files)
+  const packFilesWithContent = await getPackFilesWithContent(files)
+
   // Group by boost pack url
   const groupedBoostFiles = groupBy(
     boostFilesWithContent,
-    (dirent) => dirent.path.split("/")[1],
+    (dirent) => dirent.parentPath.split("/")[1],
   )
 
   const packs = mapValues(groupedBoostFiles, (files, packUrl) => ({
@@ -56,22 +78,22 @@ async function readPackFiles() {
   return packs
 }
 
-async function writeJson(filename: string, content: unknown) {
-  await mkdir("./built-packs", { recursive: true })
-  await writeFile(
-    `./built-packs/${filename}.json`,
-    JSON.stringify(content, null, 2),
-    {
-      flag: "w",
-    },
-  )
+async function writeJson(
+  directory: string,
+  filename: string,
+  content: unknown,
+) {
+  const jsonContent = JSON.stringify(content, null, 2)
+  await mkdir(directory, { recursive: true })
+  await writeFile(`./${directory}/${filename}.json`, jsonContent, { flag: "w" })
 }
 
 export default async function buildPacks() {
+  const directory = isDev ? "built-packs-dev" : "built-packs"
   const packs = await readPackFiles()
 
   for (const packUrl in packs) {
-    await writeJson(packUrl, packs[packUrl])
+    await writeJson(directory, packUrl, packs[packUrl])
   }
 
   const packsIndex = Object.keys(packs).map((packUrl) => ({
@@ -81,7 +103,7 @@ export default async function buildPacks() {
     version: packs[packUrl]!.version,
     updatedAt: packs[packUrl]!.updatedAt,
   }))
-  await writeJson("index", packsIndex)
+  await writeJson(directory, "index", packsIndex)
 }
 
 buildPacks()

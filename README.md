@@ -83,8 +83,9 @@ This will create a specialized build for running end-to-end tests and initiate t
 
 `pnpm dev` - create a dev build, it supports hot reloads
 `pnpm pre-commit` - runs formatting, linting, type checking and testing commands
-`packs:build` - builds packs in `packs-repo` directory and stores them in `built-packs` directory
-`packs-serve` - launches local server that serves packs from `built-packs` directory
+`packs:build-prod` - builds packs in `packs-repo` directory and stores them in `built-packs` directory
+`packs:build-dev` - builds packs in `packs-repo` directory and stores them in `built-packs-dev` directory
+`packs-serve-dev` - launches local server that serves packs from `built-packs-dev` directory
 
 ### Usage
 
