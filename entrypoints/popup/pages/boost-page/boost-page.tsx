@@ -1,7 +1,5 @@
 import { ExtractNavigationProps } from "@/utils/storage/navigation"
 import { Tabs } from "@mantine/core"
-import { createId } from "@paralleldrive/cuid2"
-import { useEffect, useRef } from "react"
 
 import {
   BoostFormProvider,
@@ -25,27 +23,14 @@ type Props = {
 }
 
 export default function BoostPage({ navigation }: Props) {
-  const form = useBoostForm({ initialValues, validate })
-
   const [boosts] = useStorage("BOOSTS")
   const boostId = navigation.props.boostId
   const boost = boosts?.find((boost) => boost.id === boostId)
 
-  const boostInitialized = useRef(false)
+  const initialFormValues = { ...initialValues, id: boostId }
+  const form = useBoostForm({ initialValues: initialFormValues, validate })
 
-  useEffect(() => {
-    function initializeBoost() {
-      if (!boost || boostInitialized.current) return
-
-      if (!boostInitialized.current) {
-        form.setValues(boost)
-        boostInitialized.current = true
-      } else {
-        form.setFieldValue("id", createId())
-      }
-    }
-    initializeBoost()
-  }, [boost, form])
+  if (boost && Object.keys(boost).length) form.initialize(boost)
 
   return (
     <Tabs

@@ -35,15 +35,19 @@ export default function BoostsRepoPage() {
           {packsIndex.map((pack) => (
             <li
               key={pack.url}
-              className="mb-4 flex cursor-pointer items-center justify-between text-blue-500"
-              onClick={() =>
-                setNavigation({
-                  path: "/remote-boost-pack",
-                  props: { boostPackUrl: pack.url },
-                })
-              }
+              className="mb-4 flex items-center justify-between"
             >
-              <h3 className="font-bold">{pack.name}</h3>
+              <h3
+                className="cursor-pointer font-bold text-blue-500"
+                onClick={() =>
+                  setNavigation({
+                    path: "/remote-boost-pack",
+                    props: { boostPackUrl: pack.url },
+                  })
+                }
+              >
+                {pack.name}
+              </h3>
               <PackInstaller packUrl={pack.url} />
             </li>
           ))}
