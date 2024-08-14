@@ -48,8 +48,6 @@ async function injectCss(tabId: number, tabUrl: string) {
     .join("\n")
     .trim()
 
-  if (!styles?.length) return
-
   chrome.scripting.executeScript({
     target: { tabId },
     args: [styles],
@@ -84,6 +82,24 @@ export default defineBackground(() => {
     if (changeInfo.status === "complete") {
       injectJs(tabId, tab.url)
       injectCss(tabId, tab.url)
+    }
+  })
+
+  async function getActiveTab() {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+    return tab
+  }
+
+  chrome.storage.local.onChanged.addListener(async (changed) => {
+    const tab = await getActiveTab()
+    if (!tab?.id || !tab.url) return
+
+    if (
+      "ENABLED_BOOSTS_IDS" in changed ||
+      "DISABLED_PACKS" in changed ||
+      "BOOSTS" in changed
+    ) {
+      injectCss(tab.id, tab.url)
     }
   })
 })
