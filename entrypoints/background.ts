@@ -1,105 +1,43 @@
-import storage from "@@/utils/storage/storage"
-import { matchPattern } from "browser-extension-url-match"
+import { intersection } from "lodash-es"
+import { getActiveTab, runningOnBrowserPages } from "./utils/browserUtils"
+import injectCss from "./utils/injectCss"
+import injectJs from "./utils/injectJs"
+import getBoostsToInject from "./utils/getBoostsToInject"
 
-function injectScripts(tabId: number, scripts: string[]) {
-  for (const javascript of scripts) {
-    chrome.scripting.executeScript({
-      target: { tabId: tabId },
-      world: "MAIN",
-      args: [javascript],
-      func: (javascript) => {
-        const func = new Function(javascript)
-        func()
-      },
-    })
-  }
+async function injectBoosts(
+  tabId: number,
+  changeInfo: chrome.tabs.TabChangeInfo,
+  tab: chrome.tabs.Tab,
+) {
+  if (!tab.url) return
+  if (runningOnBrowserPages(tab.url)) return
+  if (changeInfo.status !== "complete") return
+
+  const boostsToInject = await getBoostsToInject(tab.url)
+  injectJs(tabId, boostsToInject)
+  injectCss(tabId, boostsToInject)
 }
 
-async function getBoostsToInject(tabUrl: string) {
-  const boosts = await storage.BOOSTS.getValue()
-  const enabledBoostsIds = await storage.ENABLED_BOOSTS_IDS.getValue()
-  const disabledPacks = await storage.DISABLED_PACKS.getValue()
+async function reInjectCSSOnStorageChange(
+  changed: Record<string, chrome.storage.StorageChange>,
+) {
+  const tab = await getActiveTab()
+  if (!tab?.id || !tab.url) return
 
-  const boostsToInject = boosts.filter(
-    (b) =>
-      enabledBoostsIds.includes(b.id) &&
-      matchPattern(b.matchPatterns).assertValid().match(tabUrl) &&
-      !disabledPacks.includes(b.pack),
-  )
-
-  return boostsToInject
-}
-
-async function injectJs(tabId: number, tabUrl: string) {
-  const boostsToInject = await getBoostsToInject(tabUrl)
-  const scripts = boostsToInject
-    .map((b) => b.javascript)
-    .filter((js) => js !== undefined)
-
-  if (!scripts?.length) return
-  injectScripts(tabId, scripts)
-}
-
-async function injectCss(tabId: number, tabUrl: string) {
-  const boostsToInject = await getBoostsToInject(tabUrl)
-  const styles = boostsToInject
-    .map((b) => b.css)
-    .filter((css) => css !== undefined)
-    .join("\n")
-    .trim()
-
-  chrome.scripting.executeScript({
-    target: { tabId },
-    args: [styles],
-    func: (styles) => {
-      document.getElementById("surf-boosts")?.remove()
-      const style = document.createElement("style")
-      style.id = "surf-boosts"
-      style.textContent = styles
-      document.head.appendChild(style)
-    },
-  })
-}
-
-function runningOnBrowserPages(tabUrl: string) {
-  const browserInternalSchemes = [
-    "chrome://",
-    "edge://",
-    "about:", // Firefox
-    "safari-resource://",
-    "opera://",
-    "vivaldi://",
+  const keysTriggeringReInjection = [
+    "ENABLED_BOOSTS_IDS",
+    "DISABLED_PACKS",
+    "BOOSTS",
   ]
+  const affectedStorageKeys = Object.keys(changed)
+  if (!intersection(keysTriggeringReInjection, affectedStorageKeys).length)
+    return
 
-  return browserInternalSchemes.some((scheme) => tabUrl.startsWith(scheme))
+  const boostsToInject = await getBoostsToInject(tab.url)
+  injectCss(tab.id, boostsToInject)
 }
 
 export default defineBackground(() => {
-  chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (!tab.url) return
-    if (runningOnBrowserPages(tab.url)) return
-
-    if (changeInfo.status === "complete") {
-      injectJs(tabId, tab.url)
-      injectCss(tabId, tab.url)
-    }
-  })
-
-  async function getActiveTab() {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
-    return tab
-  }
-
-  chrome.storage.local.onChanged.addListener(async (changed) => {
-    const tab = await getActiveTab()
-    if (!tab?.id || !tab.url) return
-
-    if (
-      "ENABLED_BOOSTS_IDS" in changed ||
-      "DISABLED_PACKS" in changed ||
-      "BOOSTS" in changed
-    ) {
-      injectCss(tab.id, tab.url)
-    }
-  })
+  chrome.tabs.onUpdated.addListener(injectBoosts)
+  chrome.storage.local.onChanged.addListener(reInjectCSSOnStorageChange)
 })
