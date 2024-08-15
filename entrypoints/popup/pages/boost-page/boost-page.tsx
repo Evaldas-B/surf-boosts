@@ -30,7 +30,11 @@ export default function BoostPage({ navigation }: Props) {
   const initialFormValues = { ...initialValues, id: boostId }
   const form = useBoostForm({ initialValues: initialFormValues, validate })
 
-  if (boost && Object.keys(boost).length) form.initialize(boost)
+  const formInitializedRef = useRef(false)
+  if (!formInitializedRef.current && boost && Object.keys(boost).length) {
+    formInitializedRef.current = true
+    form.initialize(boost)
+  }
 
   return (
     <Tabs
