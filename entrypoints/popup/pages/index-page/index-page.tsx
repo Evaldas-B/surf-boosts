@@ -1,8 +1,8 @@
 import useStorage from "@/utils/storage/useStorage"
-import { uniq } from "lodash-es"
 import BoostPack from "./BoostPack"
 import { Button } from "@mantine/core"
 import { createId } from "@paralleldrive/cuid2"
+import { uniq } from "es-toolkit"
 
 export default function IndexPage() {
   const [boosts] = useStorage("BOOSTS")

@@ -1,8 +1,8 @@
-import { intersection } from "lodash-es"
 import { getActiveTab, runningOnBrowserPages } from "./utils/browserUtils"
 import injectCss from "./utils/injectCss"
 import injectJs from "./utils/injectJs"
 import getBoostsToInject from "./utils/getBoostsToInject"
+import { intersection } from "es-toolkit"
 
 async function injectBoosts(
   tabId: number,

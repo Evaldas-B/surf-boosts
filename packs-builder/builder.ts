@@ -1,10 +1,10 @@
 import { mkdir, readdir, writeFile } from "fs/promises"
-import { groupBy, mapValues } from "lodash-es"
 
 import { packSchema } from "./types"
 import { boostSchema } from "@/utils/storage/boosts"
 import { Dirent } from "fs"
 import { argv } from "process"
+import { groupBy, mapValues } from "es-toolkit"
 
 const isDev = argv.includes("--dev")
 
@@ -65,7 +65,7 @@ async function readPackFiles() {
   // Group by boost pack url
   const groupedBoostFiles = groupBy(
     boostFilesWithContent,
-    (dirent) => dirent.parentPath.split("/")[1],
+    (dirent) => dirent.parentPath.split("/")[1] ?? "",
   )
 
   const packs = mapValues(groupedBoostFiles, (files, packUrl) => ({

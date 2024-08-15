@@ -1,9 +1,9 @@
 import { ExtractNavigationProps } from "@/utils/storage/navigation"
 import useStorage from "@/utils/storage/useStorage"
-import { groupBy, uniq } from "lodash-es"
 import { useColorScheme } from "@mantine/hooks"
 import { Select } from "@mantine/core"
 import Boost from "./Boost"
+import { groupBy, uniq } from "es-toolkit"
 
 type Props = {
   navigation: ExtractNavigationProps<"/boost-pack">
@@ -18,7 +18,7 @@ export default function BoostPackPage({ navigation }: Props) {
   const categoryBoosts = boosts.filter(
     (b) => b.pack === packId && b.category === selectedCategory,
   )
-  const groupedBoosts = groupBy(categoryBoosts, "group")
+  const groupedBoosts = groupBy(categoryBoosts, (b) => b.group)
   const colorScheme = useColorScheme()
 
   const categories = useMemo(

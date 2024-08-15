@@ -5,12 +5,12 @@ import {
   TagsInput,
   TextInput,
 } from "@mantine/core"
-import { uniq } from "lodash-es"
 
 import useStorage from "@/utils/storage/useStorage"
 import { useBoostFormContext } from "./boost-form-context"
 import ConfirmDeleteInline from "../../components/ConfirmDeleteInline"
 import ReadOnlyAccessAlert from "./ReadOnlyAccess"
+import { uniq } from "es-toolkit"
 
 export default function ConfigTab() {
   const form = useBoostFormContext()
