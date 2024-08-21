@@ -1,14 +1,9 @@
-import { Boost } from "@/utils/storage/boosts"
-import pack from "./_pack"
+import createBoostFactory from "@/packs-builder/createBoostFactory"
 
-const boost: Boost = {
-  id: "oyc3jihc4tlvxkrh4o8i85px",
-  name: "Update H1",
-  pack: pack.name,
-  isPublic: true,
+const createBoost = createBoostFactory(import.meta.url)
+
+export default createBoost({
   matchPatterns: ["*://*.example.com/*"],
-  category: "Index Page",
-  group: "Macros",
   javascript: `
   const button = document.createElement('button');
   button.textContent = 'Click me';
@@ -23,8 +18,5 @@ const boost: Boost = {
     } else {
       console.log('No h1 element found');
     }
-  });
-`,
-}
-
-export default boost
+  });`,
+})

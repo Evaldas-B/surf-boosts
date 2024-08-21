@@ -53,7 +53,7 @@ export default function BoostPackPage({ navigation }: Props) {
       />
 
       {Object.keys(groupedBoosts).map((group) => (
-        <div data-testid="group" key={group}>
+        <div data-testid={`group-${group}`} key={group}>
           <h3 className="mb-1 mt-3 text-sm uppercase">{group}</h3>
 
           <div

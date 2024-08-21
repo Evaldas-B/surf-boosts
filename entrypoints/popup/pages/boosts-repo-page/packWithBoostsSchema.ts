@@ -1,4 +1,4 @@
-import { packSchema } from "@/packs-builder/types"
+import { packSchema } from "@/utils/remote-packs/types"
 import { boostSchema } from "@/utils/storage/boosts"
 import { z } from "zod"
 

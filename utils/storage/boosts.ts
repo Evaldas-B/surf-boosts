@@ -25,3 +25,4 @@ export const initialValues: Boost = {
 }
 
 export type Boost = z.infer<typeof boostSchema>
+export type BoostSchema = typeof boostSchema

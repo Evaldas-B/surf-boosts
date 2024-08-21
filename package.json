@@ -2,7 +2,7 @@
   "name": "SurfBoosts",
   "description": "This tool lets you inject custom CSS and JavaScript into any website, allowing you to customize the appearance of webpages or add new features. It also connects to a public marketplace where you can download additional Boosts",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "wxt",
@@ -14,13 +14,13 @@
     "compile": "tsc --noEmit",
     "postinstall": "wxt prepare",
     "lint": "eslint .",
-    "format": "prettier --write .",
+    "format": "prettier --write --log-level silent .",
     "test": "vitest",
     "test:e2e": "wxt build -m e2e && playwright test",
     "pre-commit": "pnpm format && pnpm lint && pnpm compile && pnpm test:e2e",
-    "packs:build-prod": "rm -rf ./built-packs & pnpm tsx ./packs-builder/builder.ts",
-    "packs:build-dev": "rm -rf ./built-packs-dev && pnpm tsx ./packs-builder/builder.ts --dev",
-    "packs:serve-dev": "pnpm exec serve ./built-packs-dev/ -p 3001"
+    "packs:build-prod": "pnpm tsx ./packs-builder/builder.ts && prettier --write --log-level silent ./packs-built/",
+    "packs:build-dev": "pnpm tsx ./packs-builder/builder.ts --dev",
+    "packs:serve-dev": "pnpm packs:build-dev && pnpm exec serve ./packs-built-dev/ -p 3001"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",
@@ -64,6 +64,7 @@
     "serve": "^14.2.3",
     "tailwindcss": "^3.4.10",
     "tsx": "^4.17.0",
+    "type-fest": "^4.24.0",
     "typescript": "^5.5.4",
     "vitest": "^1.6.0",
     "wxt": "^0.19.5"

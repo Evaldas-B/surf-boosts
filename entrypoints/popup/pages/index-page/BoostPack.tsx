@@ -21,7 +21,7 @@ export default function BoostPack({ name }: Props) {
   }
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center" data-testid={`pack-${name}`}>
       <div
         className="flex cursor-pointer items-center gap-1 text-lg text-blue-500"
         onClick={() =>

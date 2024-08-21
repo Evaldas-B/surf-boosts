@@ -1,14 +1,8 @@
-import { Boost } from "@/utils/storage/boosts"
-import pack from "./_pack"
+import createBoostFactory from "@/packs-builder/createBoostFactory"
 
-const boost: Boost = {
-  id: "w7rgdjhf1ssx8y77b98jmteo",
-  name: "Hide video sidebar",
-  pack: pack.name,
-  isPublic: true,
+const createBoost = createBoostFactory(import.meta.url)
+export default createBoost({
   matchPatterns: ["*://*.youtube.com/watch*"],
-  category: "Video Page",
-  group: "Sidebar",
   css: /* css */ `
   #secondary.ytd-watch-flexy {
     display: none;
@@ -26,6 +20,4 @@ const boost: Boost = {
     display: none;
   }
   `,
-}
-
-export default boost
+})

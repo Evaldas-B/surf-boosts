@@ -1,10 +1,10 @@
 import { test } from "./fixtures"
 import pinkPMock from "./mocks/boosts/example.com/pinkP"
 import redH1Mock from "./mocks/boosts/example.com/redH1"
-import addBoost from "./utils/addBoost"
+import addBoost from "./utils/boost/addBoost"
 import expectToHaveColor from "./utils/expectElementToHaveColor"
-import expectPackToBeToggled from "./utils/expectPackToBeToggled"
-import togglePack from "./utils/togglePack"
+import expectPackToBeToggled from "./utils/pack/expectPackToBeToggled"
+import togglePack from "./utils/pack/togglePack"
 
 test("Allows toggling pack on/off", async ({ page, extensionId }) => {
   const redH1 = redH1Mock()

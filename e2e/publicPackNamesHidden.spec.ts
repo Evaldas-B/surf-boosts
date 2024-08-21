@@ -1,7 +1,7 @@
 import { expect, test } from "./fixtures"
 import redH1 from "./mocks/boosts/example.com/redH1"
-import addBoost from "./utils/addBoost"
-import installPack from "./utils/installPack"
+import addBoost from "./utils/boost/addBoost"
+import installPack from "./utils/pack/installPack"
 
 test("Public pack names do not appear during boost creation", async ({
   page,

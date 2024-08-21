@@ -1,8 +1,8 @@
 import { expect, test } from "../fixtures"
-import addBoost from "../utils/addBoost"
+import addBoost from "../utils/boost/addBoost"
 import redH1Mock from "../mocks/boosts/example.com/redH1"
 import greenH1Mock from "../mocks/boosts/example.com/greenH1"
-import updateBoostGroup from "../utils/updateBoostGroup"
+import getBoost from "../utils/boost/getBoost"
 
 test("Allows to edit boost group", async ({ page, extensionId }) => {
   const redH1 = redH1Mock()
@@ -13,7 +13,7 @@ test("Allows to edit boost group", async ({ page, extensionId }) => {
   greenH1.group = "Group 1"
   await addBoost({ page, extensionId, boost: greenH1 })
 
-  let groupContainers = page.getByTestId("group")
+  let groupContainers = page.getByTestId(/^group-/)
 
   // Checks for one group with 2 boosts
   expect(groupContainers).toHaveCount(1)
@@ -23,9 +23,10 @@ test("Allows to edit boost group", async ({ page, extensionId }) => {
   const boosts = groupContainers.locator("h4")
   expect(await boosts.count()).toBe(2)
 
-  await updateBoostGroup({ page, boostName: "Red H1", group: "Group 2" })
+  const boost = await getBoost(page, extensionId, redH1)
+  await boost.updateGroup("Group 2")
 
   // Check if additional group was added
-  groupContainers = page.getByTestId("group")
+  groupContainers = page.getByTestId(/^group-/)
   await expect(groupContainers).toHaveCount(2)
 })

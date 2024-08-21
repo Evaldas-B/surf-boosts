@@ -1,7 +1,7 @@
 import { expect, test } from "./fixtures"
 import greenH1 from "./mocks/boosts/example.com/greenH1"
 import redH1 from "./mocks/boosts/example.com/redH1"
-import addBoost from "./utils/addBoost"
+import addBoost from "./utils/boost/addBoost"
 
 test("Allows to filter by category", async ({ page, extensionId }) => {
   const boost1 = redH1()

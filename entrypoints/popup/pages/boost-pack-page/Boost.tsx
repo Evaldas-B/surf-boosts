@@ -22,7 +22,11 @@ export default function Boost({ boost }: Props) {
   }
 
   return (
-    <div className="flex items-center gap-3" key={boost.id}>
+    <div
+      className="flex items-center gap-3"
+      key={boost.id}
+      data-testid={`boost-${boost.name}`}
+    >
       <h4
         data-testid={boost.id}
         className="cursor-pointer text-blue-400 hover:underline"

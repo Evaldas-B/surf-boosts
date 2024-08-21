@@ -1,34 +1,25 @@
 import { test } from "./fixtures"
 import redH1Mock from "./mocks/boosts/example.com/redH1"
-import addBoost from "./utils/addBoost"
-import expectBoostToBeToggled from "./utils/expectBoostToBeToggled"
+import addBoost from "./utils/boost/addBoost"
 import expectToHaveColor from "./utils/expectElementToHaveColor"
-import toggleBoost from "./utils/toggleBoost"
+import getBoost from "./utils/boost/getBoost"
 
 test("Allows toggling boost on/off", async ({ page, extensionId }) => {
   const redH1 = redH1Mock()
   await addBoost({ page, extensionId, boost: redH1 })
 
-  await toggleBoost({
-    page,
-    extensionId,
-    toggle: "off",
-    boostIdentifiers: { name: redH1.name },
-  })
-
-  expectBoostToBeToggled({ page, boostName: redH1.name, toggleState: false })
+  let boost = await getBoost(page, extensionId, redH1)
+  await boost.toggle("off")
+  await boost.expectToBeToggled("off")
 
   // Check if css was removed
   await page.goto("https://example.com/")
   let h1 = page.locator("h1")
   await expectToHaveColor(h1, "color", "black")
 
-  await toggleBoost({
-    page,
-    extensionId,
-    toggle: "on",
-    boostIdentifiers: { name: redH1.name },
-  })
+  boost = await getBoost(page, extensionId, redH1)
+  await boost.toggle("on")
+  await boost.expectToBeToggled("on")
 
   // Check if css was added back
   await page.goto("https://example.com/")

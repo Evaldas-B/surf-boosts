@@ -1,6 +1,6 @@
 import { test } from "./fixtures"
 import redH1Mock from "./mocks/boosts/example.com/redH1"
-import addBoost from "./utils/addBoost"
+import addBoost from "./utils/boost/addBoost"
 import expectToHaveColor from "./utils/expectElementToHaveColor"
 
 test("Allows to create a boost and enables it by default", async ({

@@ -2,8 +2,7 @@ import { Loader } from "@mantine/core"
 import { useEffect, useState } from "react"
 
 import PackInstaller from "./PackInstaller"
-import { Pack } from "@/packs-builder/types"
-import { NetworkStatus } from "@/utils/remote-packs/config"
+import { NetworkStatus, Pack } from "@/utils/remote-packs/types"
 import { fetchPacksIndex } from "@/utils/remote-packs/fetchPacksIndex"
 import useStorage from "@/utils/storage/useStorage"
 

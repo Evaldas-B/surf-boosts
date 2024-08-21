@@ -1,14 +1,14 @@
 import { test } from "../fixtures"
-import expectPackToBeToggled from "../utils/expectPackToBeToggled"
-import installPack from "../utils/installPack"
-import togglePack from "../utils/togglePack"
-import uninstallPack from "../utils/uninstallPack"
+import expectPackToBeToggled from "../utils/pack/expectPackToBeToggled"
+import installPack from "../utils/pack/installPack"
+import togglePack from "../utils/pack/togglePack"
+import uninstallPack from "../utils/pack/uninstallPack"
 
 test("After deletion deletes record from disabled boosts", async ({
   page,
   extensionId,
 }) => {
-  const packName = "Example"
+  const packName = "_example"
   await installPack({ page, extensionId, packName })
   await togglePack({ page, extensionId, packName, toggle: "off" })
 

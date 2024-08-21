@@ -1,17 +1,15 @@
 import { expect, test } from "../fixtures"
-import addBoost from "../utils/addBoost"
+import addBoost from "../utils/boost/addBoost"
 import redH1Mock from "../mocks/boosts/example.com/redH1"
-import updateBoostMatchPatterns from "../utils/updateBoostMatchPatterns"
 import expectToHaveColor from "../utils/expectElementToHaveColor"
+import getBoost from "../utils/boost/getBoost"
 
 test("Allows editing boost match patterns", async ({ page, extensionId }) => {
   const redH1 = redH1Mock()
   await addBoost({ page, extensionId, boost: redH1 })
-  await updateBoostMatchPatterns({
-    page,
-    boostName: "Red H1",
-    matchPatterns: ["https://example.net/*"],
-  })
+
+  const boost = await getBoost(page, extensionId, redH1)
+  await boost.updateMatchPatterns(["https://example.net/*"])
 
   await page.getByText("Red H1").click()
   await expect(page.getByText("https://example.net/*")).toBeVisible()

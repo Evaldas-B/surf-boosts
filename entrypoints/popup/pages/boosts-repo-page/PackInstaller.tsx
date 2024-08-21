@@ -3,7 +3,7 @@ import { useState } from "react"
 
 import useStorage from "@/utils/storage/useStorage"
 import fetchPackByUrl from "@/utils/remote-packs/fetchPackByUrl"
-import { NetworkStatus } from "@/utils/remote-packs/config"
+import { NetworkStatus } from "@/utils/remote-packs/types"
 
 type Props = {
   packUrl: string

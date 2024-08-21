@@ -1,12 +1,14 @@
 import { expect, test } from "../fixtures"
-import addBoost from "../utils/addBoost"
+import addBoost from "../utils/boost/addBoost"
 import redH1Mock from "../mocks/boosts/example.com/redH1"
-import updateBoostCategory from "../utils/updateBoostCategory"
+import getBoost from "../utils/boost/getBoost"
 
 test("Allows updating boost category", async ({ page, extensionId }) => {
   const redH1 = redH1Mock()
   await addBoost({ page, extensionId, boost: redH1 })
-  updateBoostCategory({ page, boostName: "Red H1", category: "New Category" })
+
+  const boost = await getBoost(page, extensionId, redH1)
+  await boost.updateCategory("New Category")
 
   // Check if categories selector contains the new category
   const categoriesSelectValue = page.getByLabel("Category").first()

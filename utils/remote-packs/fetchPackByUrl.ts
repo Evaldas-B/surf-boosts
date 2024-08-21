@@ -2,7 +2,8 @@ import {
   PackWithBoosts,
   packWithBoostsSchema,
 } from "@/entrypoints/popup/pages/boosts-repo-page/packWithBoostsSchema"
-import { baseUrl, NetworkStatus } from "./config"
+import { NetworkStatus } from "./types"
+import { remotePacksUrl } from "../config"
 
 export default async function fetchPackByUrl(
   packUrl: string,
@@ -12,11 +13,11 @@ export default async function fetchPackByUrl(
 
   try {
     statusCallback("loading")
-    const res = await fetch(`${baseUrl}/${packUrl}.json`)
+    const res = await fetch(`${remotePacksUrl}/${packUrl}.json`)
     const json = await res.json()
     pack = packWithBoostsSchema.parse(json)
   } catch (error) {
-    console.log(error)
+    console.error(error)
     statusCallback("error")
   }
 

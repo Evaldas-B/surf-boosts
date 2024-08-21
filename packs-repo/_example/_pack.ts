@@ -1,11 +1,8 @@
-import { Pack } from "@/packs-builder/types"
+import createPackFactory from "@/packs-builder/createPackFactory"
 
-const pack: Pack = {
-  name: "Example",
+const createPack = createPackFactory(import.meta.url)
+
+export default createPack({
   description: "Example pack",
-  url: "_example",
   version: "0.0.1",
-  updatedAt: new Date(),
-}
-
-export default pack
+})

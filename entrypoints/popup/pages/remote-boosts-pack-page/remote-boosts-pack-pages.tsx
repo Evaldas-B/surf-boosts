@@ -3,7 +3,7 @@ import { ExtractNavigationProps } from "@/utils/storage/navigation"
 import { PackWithBoosts } from "../boosts-repo-page/packWithBoostsSchema"
 import { IconBolt, IconBrandJavascript } from "@tabler/icons-react"
 import PackInstaller from "../boosts-repo-page/PackInstaller"
-import { NetworkStatus } from "@/utils/remote-packs/config"
+import { NetworkStatus } from "@/utils/remote-packs/types"
 
 type Props = {
   navigation: ExtractNavigationProps<"/remote-boost-pack">
