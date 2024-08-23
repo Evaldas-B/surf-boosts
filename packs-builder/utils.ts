@@ -28,7 +28,7 @@ export function filterDevFiles(dirent: Dirent) {
   return true
 }
 
-export function parseBoostIdentifiers(path: string) {
+export function parseBoostIdentifiers(path: string, isSetup = false) {
   if (path.endsWith(".ts")) path = path.slice(0, -3)
   else
     throw new Error(`Only files with .ts extension are supported. Got: ${path}`)
@@ -38,16 +38,21 @@ export function parseBoostIdentifiers(path: string) {
   if (!pathParts)
     throw new Error(`Failed to parse boost identifiers from path: ${path}`)
 
-  const [pack, category, group, name] = pathParts
-    .split("/")
-    .map((p) => camelCaseToStartCase(p))
+  const parts = pathParts.split("/").map((p) => camelCaseToStartCase(p))
 
-  if (!pack) throw new Error(`Failed to parse pack from path: ${path}`)
-  if (!category) throw new Error(`Failed to parse category from path: ${path}`)
-  if (!group) throw new Error(`Failed to parse group from path: ${path}`)
-  if (!name) throw new Error(`Failed to parse name from path: ${path}`)
+  if (isSetup) {
+    const [pack, name] = parts
+    return { id: pathParts, pack, category: "_setup", group: "_setup", name }
+  } else {
+    const [pack, category, group, name] = parts
 
-  return { id: pathParts, pack, category, group, name }
+    if (!pack) throw new Error(`Failed to parse pack from path: ${path}`)
+    if (!category) throw new Error(`Failed to parse category from path: ${path}`)
+    if (!group) throw new Error(`Failed to parse group from path: ${path}`)
+    if (!name) throw new Error(`Failed to parse name from path: ${path}`)
+
+    return { id: pathParts, pack, category, group, name }
+  }
 }
 
 export function parsePackIdentifiers(path: string) {

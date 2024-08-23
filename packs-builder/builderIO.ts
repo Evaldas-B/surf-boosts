@@ -28,12 +28,17 @@ export async function readPacksRepoFiles() {
     .filter((dirent) => dirent.isFile() && filterDevFiles(dirent))
     .map((dirent) => ({ dirent }))
 
-  const [packFiles, boostFiles] = partition(
+  const [packFiles, boostAndSetupFiles] = partition(
     files,
     ({ dirent }) => dirent.name === packRootName,
   )
 
-  return { packFiles, boostFiles }
+  const [boostFiles, setupBoostFiles] = partition(
+    boostAndSetupFiles,
+    ({ dirent }) => !dirent.parentPath.endsWith("_setup"),
+  )
+
+  return { packFiles, boostFiles, setupBoostFiles }
 }
 
 export async function reCreatePacksDir() {

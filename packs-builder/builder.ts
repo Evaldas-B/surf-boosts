@@ -9,16 +9,14 @@ import {
 import { getBoostFilesWithContent, getPackFilesWithContent } from "./utils"
 
 async function buildPacks() {
-  const { packFiles, boostFiles } = await readPacksRepoFiles()
-  const boostsFilesWithContent = await getBoostFilesWithContent(boostFiles)
-  const packFilesWithContent = await getPackFilesWithContent(packFiles)
-
+  const { packFiles, boostFiles, setupBoostFiles } = await readPacksRepoFiles()
+  const boosts = await getBoostFilesWithContent(boostFiles)
+  const setupBoosts = await getBoostFilesWithContent(setupBoostFiles)
+  const packs = await getPackFilesWithContent(packFiles)
   await reCreatePacksDir()
-  await writePacksIndex(packFilesWithContent)
-  const packsWithBoosts = groupBoostsWithPacks(
-    packFilesWithContent,
-    boostsFilesWithContent,
-  )
+  await writePacksIndex(packs)
+  const boostsAndSetupBoosts = [...boosts, ...setupBoosts]
+  const packsWithBoosts = groupBoostsWithPacks(packs, boostsAndSetupBoosts)
   await writePacks(packsWithBoosts)
   logTask(packsWithBoosts)
 }

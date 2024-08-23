@@ -3,6 +3,7 @@ import { z } from "zod"
 export const boostSchema = z.object({
   id: z.string(),
   isPublic: z.boolean(),
+  isSetup: z.boolean().default(false).catch(false),
   name: z.string(),
   matchPatterns: z.array(z.string()),
   pack: z.string(),
@@ -15,6 +16,7 @@ export const boostSchema = z.object({
 export const initialValues: Boost = {
   id: "",
   isPublic: false,
+  isSetup: false,
   name: "",
   matchPatterns: [],
   pack: "",

@@ -16,15 +16,16 @@ export default function BoostPackPage({ navigation }: Props) {
   const packId = navigation.props.boostPackId
 
   const categoryBoosts = boosts.filter(
-    (b) => b.pack === packId && b.category === selectedCategory,
+    (b) => b.pack === packId && b.category === selectedCategory && !b.isSetup,
   )
   const groupedBoosts = groupBy(categoryBoosts, (b) => b.group)
   const colorScheme = useColorScheme()
 
   const categories = useMemo(
     () =>
-      uniq(boosts.filter((b) => b.pack === packId).map((b) => b.category)) ||
-      [],
+      uniq(
+        boosts.filter((b) => b.pack === packId).map((b) => b.category),
+      ).filter((c) => c !== "_setup") || [],
     [boosts, packId],
   )
 

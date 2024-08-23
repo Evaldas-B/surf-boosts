@@ -1,41 +1,29 @@
 import { Boost } from "@/utils/storage/boosts"
 import { parseBoostIdentifiers } from "./utils"
 import { matchPattern } from "browser-extension-url-match"
+import { RequireAtLeastOne } from "type-fest"
 
-type RequiredBoostFields = Pick<Boost, "css" | "javascript">
-type OptionalBoostFields = Partial<
-  Pick<Boost, "pack" | "category" | "group" | "name" | "isPublic">
->
+type RequiredBoostFields = Pick<Boost, "matchPatterns"> &
+  RequireAtLeastOne<{
+    css: string
+    javascript: string
+  }>
 
-type CreatableBoost = Omit<
-  Boost,
-  | "id"
-  | "pack"
-  | "category"
-  | "group"
-  | "name"
-  | "isPublic"
-  | "css"
-  | "javascript"
-> &
-  RequiredBoostFields &
-  OptionalBoostFields
+type OptionalBoostFields = Partial<Pick<Boost, "name">>
 
-export default function createBoostFactory(boostPath: string) {
+export type CreatableBoost = RequiredBoostFields & OptionalBoostFields
+
+export default function createBoostFactory(boostPath: string, isSetup = false) {
   const {
-    id: defaultId,
-    pack: defaultPack,
-    category: defaultCategory,
-    group: defaultGroup,
-    name: defaultName,
-  } = parseBoostIdentifiers(boostPath)
+    id: inferredId,
+    pack: inferredPack,
+    category: inferredCategory,
+    group: inferredGroup,
+    name: inferredName,
+  } = parseBoostIdentifiers(boostPath, isSetup)
 
   return function createBoost({
-    pack = defaultPack,
-    category = defaultCategory,
-    group = defaultGroup,
-    name = defaultName,
-    isPublic = true,
+    name = inferredName,
     ...boost
   }: CreatableBoost) {
     matchPattern(boost.matchPatterns).assertValid()
@@ -44,12 +32,13 @@ export default function createBoostFactory(boostPath: string) {
     boost.javascript = boost?.javascript?.trim()
 
     return {
-      id: defaultId,
-      pack,
-      category,
-      group,
+      id: inferredId,
+      pack: inferredPack,
+      category: inferredCategory,
+      group: inferredGroup,
       name,
-      isPublic,
+      isPublic: true,
+      isSetup,
       ...boost,
     }
   }

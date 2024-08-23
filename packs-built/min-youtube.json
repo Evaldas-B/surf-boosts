@@ -7,6 +7,7 @@
     {
       "id": "min-youtube/video-page/sidebar/hide-video-sidebar",
       "isPublic": true,
+      "isSetup": false,
       "name": "Hide video sidebar",
       "matchPatterns": ["*://*.youtube.com/watch*"],
       "pack": "Min youtube",
@@ -17,6 +18,7 @@
     {
       "id": "min-youtube/video-page/player/hide-end-cards",
       "isPublic": true,
+      "isSetup": false,
       "name": "Hide end cards",
       "matchPatterns": ["*://*.youtube.com/watch*"],
       "pack": "Min youtube",
@@ -27,6 +29,7 @@
     {
       "id": "min-youtube/video-page/comments/hide-comments",
       "isPublic": true,
+      "isSetup": false,
       "name": "Hide comments",
       "matchPatterns": ["*://*.youtube.com/watch*"],
       "pack": "Min youtube",
@@ -37,6 +40,7 @@
     {
       "id": "min-youtube/search-page/results-filtering/hide-channels",
       "isPublic": true,
+      "isSetup": false,
       "name": "Hide channels",
       "matchPatterns": ["*://*.youtube.com/results?*"],
       "pack": "Min youtube",
@@ -47,6 +51,7 @@
     {
       "id": "min-youtube/search-page/results-filtering/hide-mixes",
       "isPublic": true,
+      "isSetup": false,
       "name": "Hide mixes",
       "matchPatterns": ["*://*.youtube.com/results?*"],
       "pack": "Min youtube",
@@ -57,6 +62,7 @@
     {
       "id": "min-youtube/search-page/results-filtering/hide-playlists",
       "isPublic": true,
+      "isSetup": false,
       "name": "Hide playlists",
       "matchPatterns": ["*://*.youtube.com/results?*"],
       "pack": "Min youtube",
@@ -67,6 +73,7 @@
     {
       "id": "min-youtube/search-page/results-filtering/hide-shorts",
       "isPublic": true,
+      "isSetup": false,
       "name": "Hide shorts",
       "matchPatterns": ["*://*.youtube.com/*"],
       "pack": "Min youtube",
@@ -77,6 +84,7 @@
     {
       "id": "min-youtube/global/navbar/hide-navbar",
       "isPublic": true,
+      "isSetup": false,
       "name": "Hide navbar",
       "matchPatterns": ["*://*.youtube.com/*"],
       "pack": "Min youtube",
@@ -87,6 +95,7 @@
     {
       "id": "min-youtube/global/annoyances/hide-your-youtube-history-if-off",
       "isPublic": true,
+      "isSetup": false,
       "name": "Hide your youtube history if off",
       "matchPatterns": ["*://*.youtube.com/*"],
       "pack": "Min youtube",

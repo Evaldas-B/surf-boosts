@@ -10,8 +10,11 @@ export const browserInternalSchemes = [
   "opera://",
   "vivaldi://",
 ]
-/** Flag that indicates if the app is running in development mode */
+/** Flag that indicates if the app is running in test mode */
 export const isTest = import.meta.env?.MODE === "e2e"
+
+/** Flag that indicates if the app is running in development mode */
+export const isDev = import.meta.env?.DEV
 
 /** Name of the source directory of boost packs */
 export const packsRepoDirName = "packs-repo"
@@ -24,4 +27,5 @@ const remotePacksProdUrl =
 const remotePacksDevUrl = "http://localhost:3001"
 
 /** URL of the remote repository that contains the boost packs */
-export const remotePacksUrl = isTest ? remotePacksDevUrl : remotePacksProdUrl
+export const remotePacksUrl =
+  isTest || isDev ? remotePacksDevUrl : remotePacksProdUrl
