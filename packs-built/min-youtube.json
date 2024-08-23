@@ -46,7 +46,7 @@
       "pack": "Min youtube",
       "category": "Search page",
       "group": "Results filtering",
-      "css": "ytd-shelf-renderer:has(ytd-post-renderer) {\n    display: none;\n  }\n  \n  ytd-secondary-search-container-renderer:has(ytd-universal-watch-card-renderer) {\n    display: none;\n  }"
+      "css": "ytd-channel-renderer {\n    display: none;\n  }"
     },
     {
       "id": "min-youtube/search-page/results-filtering/hide-mixes",

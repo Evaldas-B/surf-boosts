@@ -3,9 +3,9 @@ import createBoostFactory from "@/packs-builder/createBoostFactory"
 const createBoost = createBoostFactory(import.meta.url)
 
 export default createBoost({
-  matchPatterns: ["*://*.youtube.com/results?*"],
+  matchPatterns: ["*://*.reddit.com/r/*/comments/*"],
   css: /* css */ `
-  ytd-channel-renderer {
+  faceplate-tracker[source="shreddit_comment_count_button"] {
     display: none;
   }
   `,

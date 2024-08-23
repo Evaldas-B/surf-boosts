@@ -1,0 +1,217 @@
+{
+  "name": "Min reddit",
+  "description": "Allows to remove unnecessary elements from Reddit",
+  "url": "min-reddit",
+  "version": "0.0.1",
+  "boosts": [
+    {
+      "id": "min-reddit/subreddit-page/feed/hide-community-highlights",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide community highlights",
+      "matchPatterns": ["*://*.reddit.com/r/*/"],
+      "pack": "Min reddit",
+      "category": "Subreddit page",
+      "group": "Feed",
+      "css": "community-highlight-carousel {\n    display: none !important;\n  }"
+    },
+    {
+      "id": "min-reddit/search-page/sidebar/hide-communities",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide communities",
+      "matchPatterns": ["*://*.reddit.com/search/*"],
+      "pack": "Min reddit",
+      "category": "Search page",
+      "group": "Sidebar",
+      "css": "section[aria-label=\"Related communities\"] {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/search-page/sidebar/hide-people",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide people",
+      "matchPatterns": ["*://*.reddit.com/search/*"],
+      "pack": "Min reddit",
+      "category": "Search page",
+      "group": "Sidebar",
+      "css": "section[aria-label=\"Related people\"] {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/search-page/sidebar/hide-sidebar",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide sidebar",
+      "matchPatterns": ["*://*.reddit.com/search/*"],
+      "pack": "Min reddit",
+      "category": "Search page",
+      "group": "Sidebar",
+      "css": "div[data-testid=\"search-results-sidebar\"] {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/post-page/sidebar/hide-suggested-posts",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide suggested posts",
+      "matchPatterns": ["*://*.reddit.com/r/*/comments/*"],
+      "pack": "Min reddit",
+      "category": "Post page",
+      "group": "Sidebar",
+      "css": "pdp-right-rail {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/post-page/sidebar/hide-top-posts",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide top posts",
+      "matchPatterns": ["*://*.reddit.com/r/*"],
+      "pack": "Min reddit",
+      "category": "Post page",
+      "group": "Sidebar",
+      "css": "div[srf-handle=\"top-posts-container\"] {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/post-page/comments-section/hide-add-comment-button",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide add comment button",
+      "matchPatterns": ["*://*.reddit.com/r/*/comments/*"],
+      "pack": "Min reddit",
+      "category": "Post page",
+      "group": "Comments section",
+      "css": "faceplate-tracker[source=\"shreddit_comment_count_button\"] {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/post-page/comments-section/hide-comments-section",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide comments section",
+      "matchPatterns": ["*://*.reddit.com/r/*/comments/*"],
+      "pack": "Min reddit",
+      "category": "Post page",
+      "group": "Comments section",
+      "css": "div[id=\"comment-tree-content-anchor-1ez9a2d\"] {\n    display: none;\n  }\n\n  shreddit-comments-sort-dropdown[target=\"comment-tree-content-anchor-1ez9a2d\"] {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/home-page/general/hide-feed",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide feed",
+      "matchPatterns": ["*://*.reddit.com/"],
+      "pack": "Min reddit",
+      "category": "Home page",
+      "group": "General",
+      "css": "main {\n    visibility: hidden;\n  }"
+    },
+    {
+      "id": "min-reddit/home-page/general/hide-popular-communities",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide popular communities",
+      "matchPatterns": ["*://*.reddit.com/"],
+      "pack": "Min reddit",
+      "category": "Home page",
+      "group": "General",
+      "css": "aside[aria-label=\"Popular Communities\"] {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/home-page/general/hide-posts-carousel",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide posts carousel",
+      "matchPatterns": ["*://*.reddit.com/"],
+      "pack": "Min reddit",
+      "category": "Home page",
+      "group": "General",
+      "css": "search-dynamic-id-cache-controller {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/global/search-input/hide-trending-today",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide trending today",
+      "matchPatterns": ["*://*.reddit.com/*"],
+      "pack": "Min reddit",
+      "category": "Global",
+      "group": "Search input",
+      "javascript": "const search = document.querySelector(\"reddit-search-large\")\n\n  const hideElements = () => {\n    search.shadowRoot.querySelector(\"#reddit-trending-searches-partial-container\")?.style.setProperty(\"display\", \"none\")\n    search.shadowRoot.querySelector('svg[icon-name=\"rising-outline\"]')?.parentElement?.style.setProperty(\"display\", \"none\")\n  }\n\n  hideElements()\n\n  new MutationObserver(hideElements).observe(search.shadowRoot, { childList: true, subtree: true })"
+    },
+    {
+      "id": "min-reddit/global/navbar/hide-settings-menu",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide settings menu",
+      "matchPatterns": ["*://*.reddit.com/*"],
+      "pack": "Min reddit",
+      "category": "Global",
+      "group": "Navbar",
+      "css": "nav div.flex.items-center.justify-center:has(#expand-user-drawer-button) {\n        display: none;\n    }"
+    },
+    {
+      "id": "min-reddit/global/left-sidebar/hide-navbar",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide navbar",
+      "matchPatterns": ["*://*.reddit.com/*"],
+      "pack": "Min reddit",
+      "category": "Global",
+      "group": "Left sidebar",
+      "css": "#left-sidebar-container, reddit-sidebar-nav, #hamburger-button-tooltip {\n    display: none !important;\n  }"
+    },
+    {
+      "id": "min-reddit/global/left-sidebar/hide-popular-button",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide popular button",
+      "matchPatterns": ["*://*.reddit.com/*"],
+      "pack": "Min reddit",
+      "category": "Global",
+      "group": "Left sidebar",
+      "css": "left-nav-top-section[popular] {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/global/left-sidebar/hide-recent-section",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide recent section",
+      "matchPatterns": ["*://*.reddit.com/*"],
+      "pack": "Min reddit",
+      "category": "Global",
+      "group": "Left sidebar",
+      "css": "reddit-recent-pages {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/global/left-sidebar/hide-resources-section",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide resources section",
+      "matchPatterns": ["*://*.reddit.com/*"],
+      "pack": "Min reddit",
+      "category": "Global",
+      "group": "Left sidebar",
+      "css": "details:has(> summary[aria-controls=\"RESOURCES\"]) {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/global/left-sidebar/hide-topics-section",
+      "isPublic": true,
+      "isSetup": false,
+      "name": "Hide topics section",
+      "matchPatterns": ["*://*.reddit.com/*"],
+      "pack": "Min reddit",
+      "category": "Global",
+      "group": "Left sidebar",
+      "css": "details:has(> summary[aria-controls=\"TOPICS\"]) {\n    display: none;\n  }"
+    },
+    {
+      "id": "min-reddit/_setup/post-page",
+      "isPublic": true,
+      "isSetup": true,
+      "name": "_setup",
+      "matchPatterns": ["*://*.reddit.com/r/*/comments/*"],
+      "pack": "Min reddit",
+      "category": "_setup",
+      "group": "_setup",
+      "javascript": "const h2 = document.querySelectorAll(\"h2\");\n  const topPostsH2 = Array.from(h2).find(element => element.textContent.includes(\"Top Posts\"));\n  topPostsH2.parentNode.setAttribute(\"srf-handle\", \"top-posts-container\");"
+    }
+  ]
+}

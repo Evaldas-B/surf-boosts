@@ -47,7 +47,8 @@ export function parseBoostIdentifiers(path: string, isSetup = false) {
     const [pack, category, group, name] = parts
 
     if (!pack) throw new Error(`Failed to parse pack from path: ${path}`)
-    if (!category) throw new Error(`Failed to parse category from path: ${path}`)
+    if (!category)
+      throw new Error(`Failed to parse category from path: ${path}`)
     if (!group) throw new Error(`Failed to parse group from path: ${path}`)
     if (!name) throw new Error(`Failed to parse name from path: ${path}`)
 

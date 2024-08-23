@@ -4,6 +4,7 @@ import { createId } from "@paralleldrive/cuid2"
 const boost = (): Boost => ({
   id: createId(),
   isPublic: false,
+  isSetup: false,
   name: "Red H1",
   matchPatterns: ["https://example.com/*"],
   pack: "Example",

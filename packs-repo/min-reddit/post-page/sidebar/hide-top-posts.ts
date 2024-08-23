@@ -3,9 +3,9 @@ import createBoostFactory from "@/packs-builder/createBoostFactory"
 const createBoost = createBoostFactory(import.meta.url)
 
 export default createBoost({
-  matchPatterns: ["*://*.youtube.com/results?*"],
+  matchPatterns: ["*://*.reddit.com/r/*"],
   css: /* css */ `
-  ytd-channel-renderer {
+  div[srf-handle="top-posts-container"] {
     display: none;
   }
   `,
