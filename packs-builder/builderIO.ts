@@ -5,6 +5,7 @@ import path from "node:path"
 import { BoostFile, PackFile, PackWithBoosts } from "./types"
 import fs from "node:fs/promises"
 import { filterDevFiles } from "./utils"
+import { setupBoostsName } from "@/utils/config"
 
 const isDev = process.argv.includes("--dev")
 const builtPacksDirName = isDev ? "packs-built-dev" : "packs-built"
@@ -35,7 +36,7 @@ export async function readPacksRepoFiles() {
 
   const [boostFiles, setupBoostFiles] = partition(
     boostAndSetupFiles,
-    ({ dirent }) => !dirent.parentPath.endsWith("_setup"),
+    ({ dirent }) => !dirent.parentPath.endsWith(setupBoostsName),
   )
 
   return { packFiles, boostFiles, setupBoostFiles }

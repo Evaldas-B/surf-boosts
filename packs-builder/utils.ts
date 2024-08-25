@@ -6,6 +6,7 @@ import { Dirent } from "fs"
 import { z } from "zod"
 import path from "node:path"
 import { PackSchema, packSchema } from "@/utils/remote-packs/types"
+import { setupBoostsName } from "@/utils/config"
 
 function camelCaseToStartCase(str: string) {
   return str
@@ -42,7 +43,13 @@ export function parseBoostIdentifiers(path: string, isSetup = false) {
 
   if (isSetup) {
     const [pack, name] = parts
-    return { id: pathParts, pack, category: "_setup", group: "_setup", name }
+    return {
+      id: pathParts,
+      pack,
+      category: setupBoostsName,
+      group: setupBoostsName,
+      name,
+    }
   } else {
     const [pack, category, group, name] = parts
 

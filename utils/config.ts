@@ -22,6 +22,9 @@ export const packsRepoDirName = "packs-repo"
 /** Name of the pack manifest file */
 export const packRootName = "_pack.ts"
 
+/** Name of the setup boosts */
+export const setupBoostsName = "_setup"
+
 const remotePacksProdUrl =
   "https://raw.githubusercontent.com/Evaldas-B/surf-boosts/master/packs-built"
 const remotePacksDevUrl = "http://localhost:3001"

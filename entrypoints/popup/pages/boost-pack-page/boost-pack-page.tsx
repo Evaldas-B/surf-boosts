@@ -3,6 +3,7 @@ import useStorage from "@/utils/storage/useStorage"
 import { Select } from "@mantine/core"
 import Boost from "./Boost"
 import { groupBy, uniq } from "es-toolkit"
+import { setupBoostsName } from "@/utils/config"
 
 type Props = {
   navigation: ExtractNavigationProps<"/boost-pack">
@@ -23,7 +24,7 @@ export default function BoostPackPage({ navigation }: Props) {
     () =>
       uniq(
         boosts.filter((b) => b.pack === packId).map((b) => b.category),
-      ).filter((c) => c !== "_setup") || [],
+      ).filter((c) => c !== setupBoostsName) || [],
     [boosts, packId],
   )
 
