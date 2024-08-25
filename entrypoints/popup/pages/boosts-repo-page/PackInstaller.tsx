@@ -60,7 +60,8 @@ export default function PackInstaller({ packUrl }: Props) {
   return (
     <Button
       className="w-20"
-      color={!installedPublicPacks.includes(packUrl) ? "green" : "red"}
+      color={!installedPublicPacks.includes(packUrl) ? "primary" : "secondary"}
+      variant={!installedPublicPacks.includes(packUrl) ? "filled" : "light"}
       size="compact-sm"
       onClick={() =>
         !installedPublicPacks.includes(packUrl)

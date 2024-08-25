@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import { colors } from "./entrypoints/utils/theme"
+
 export default {
   content: [
     "./assets/**/*.tsx",
@@ -6,7 +8,9 @@ export default {
     "./components/**/*.tsx",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors,
+    },
   },
   plugins: [],
 }

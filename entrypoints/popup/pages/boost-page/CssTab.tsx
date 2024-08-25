@@ -1,14 +1,12 @@
 import { less } from "@codemirror/lang-less"
 import { Button, InputLabel } from "@mantine/core"
-import { useColorScheme } from "@mantine/hooks"
-import { vscodeDark, vscodeLight } from "@uiw/codemirror-theme-vscode"
+import { vscodeDark } from "@uiw/codemirror-theme-vscode"
 import CodeMirror from "@uiw/react-codemirror"
 import { useBoostFormContext } from "./boost-form-context"
 import ReadOnlyAccessAlert from "./ReadOnlyAccess"
 
 export default function CssTab() {
   const form = useBoostFormContext()
-  const colorScheme = useColorScheme()
 
   const { isPublic } = form.getValues()
 
@@ -20,7 +18,7 @@ export default function CssTab() {
         height={isPublic ? "310px" : "350px"}
         extensions={[less()]}
         readOnly={isPublic}
-        theme={colorScheme === "light" ? vscodeLight : vscodeDark}
+        theme={vscodeDark}
         {...form.getInputProps("css")}
       />
 

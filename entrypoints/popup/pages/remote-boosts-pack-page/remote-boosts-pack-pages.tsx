@@ -25,26 +25,40 @@ export default function RemoteBoostsPackPage({ navigation }: Props) {
     fetch()
   }, [packUrl])
 
-  if (networkStatus === "loading") return <div>Loading...</div>
+  if (networkStatus === "loading")
+    return (
+      <div className="flex h-screen items-center justify-center">
+        Loading...
+      </div>
+    )
   if (!pack)
-    return <div className="mt-5 text-center">Failed to retrieve the pack</div>
+    return (
+      <div className="mt-5 text-center text-red-500">
+        Failed to retrieve the pack
+      </div>
+    )
 
   return (
-    <div className="mt-5 flex flex-col gap-1">
+    <div className="mt-5 flex flex-col gap-4 rounded-lg bg-gray-800 p-6 shadow-md">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl">{pack?.name}</h1>
+        <h1 className="text-2xl font-bold text-white">{pack?.name}</h1>
         <PackInstaller packUrl={pack?.url} />
       </div>
-      <p className="mt-3">{pack?.description}</p>
-      <p className="mt-5 flex">
-        <IconBolt className="inline-block rotate-12 text-yellow-400" />
-        Total Boosts:
-        <span className="ml-1 font-medium">{pack?.boosts.length}</span>
-      </p>
-      <p className="flex items-center">
-        <IconBrandJavascript className="text-blue-500" /> Uses JavaScript:{" "}
-        {usesJavascript ? "Yes" : "No"}
-      </p>
+      <p className="mt-3 text-gray-300">{pack?.description}</p>
+      <div className="mt-5 flex flex-col gap-2">
+        <p className="flex items-center text-gray-300">
+          <IconBolt className="mr-2 inline-block rotate-12 text-yellow-400" />
+          Total Boosts:
+          <span className="ml-1 font-medium">{pack?.boosts.length}</span>
+        </p>
+        <p className="flex items-center text-gray-300">
+          <IconBrandJavascript className="mr-2 text-blue-400" />
+          Uses JavaScript:{" "}
+          <span className="ml-1 font-medium">
+            {usesJavascript ? "Yes" : "No"}
+          </span>
+        </p>
+      </div>
     </div>
   )
 }

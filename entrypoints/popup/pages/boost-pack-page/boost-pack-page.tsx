@@ -1,6 +1,5 @@
 import { ExtractNavigationProps } from "@/utils/storage/navigation"
 import useStorage from "@/utils/storage/useStorage"
-import { useColorScheme } from "@mantine/hooks"
 import { Select } from "@mantine/core"
 import Boost from "./Boost"
 import { groupBy, uniq } from "es-toolkit"
@@ -19,7 +18,6 @@ export default function BoostPackPage({ navigation }: Props) {
     (b) => b.pack === packId && b.category === selectedCategory && !b.isSetup,
   )
   const groupedBoosts = groupBy(categoryBoosts, (b) => b.group)
-  const colorScheme = useColorScheme()
 
   const categories = useMemo(
     () =>
@@ -57,9 +55,7 @@ export default function BoostPackPage({ navigation }: Props) {
         <div data-testid={`group-${group}`} key={group}>
           <h3 className="mb-1 mt-3 text-sm uppercase">{group}</h3>
 
-          <div
-            className={`flex flex-col gap-2 rounded-xl ${colorScheme === "dark" ? "bg-gray-700" : "bg-gray-200"} p-3`}
-          >
+          <div className="flex flex-col gap-2 rounded-xl bg-base-500 p-3">
             {groupedBoosts[group]?.map((boost) => (
               <Boost key={boost.id} boost={boost} />
             ))}

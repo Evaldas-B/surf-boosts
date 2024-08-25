@@ -37,7 +37,7 @@ export default function BoostsRepoPage() {
               className="mb-4 flex items-center justify-between"
             >
               <h3
-                className="cursor-pointer font-bold text-blue-500"
+                className="cursor-pointer text-blue-400 hover:underline"
                 onClick={() =>
                   setNavigation({
                     path: "/remote-boost-pack",
