@@ -13,7 +13,7 @@
       "pack": "Min youtube",
       "category": "Video page",
       "group": "Sidebar",
-      "css": "#secondary.ytd-watch-flexy {\n    display: none;\n  }\n  /* Center video when sidebar is hidden */\n  ytd-watch-flexy[flexy][is-two-columns_]:not([fullscreen]):not([theater]) {\n    --ytd-watch-flexy-max-player-width: calc(\n      var(--ytd-watch-flexy-chat-max-height) * var(--ytd-watch-flexy-width-ratio) /\n        var(--ytd-watch-flexy-height-ratio)\n    ) !important;\n  }\n\n  /* Mobile */\n  ytd-item-section-renderer {\n    display: none;\n  }"
+      "css": "#secondary.ytd-watch-flexy {\n  display: none;\n}\n\n/* Center video when sidebar is hidden */\nytd-watch-flexy[flexy][is-two-columns_]:not([fullscreen]):not([theater]) {\n  --ytd-watch-flexy-max-player-width: calc(\n    var(--ytd-watch-flexy-chat-max-height) * var(--ytd-watch-flexy-width-ratio) /\n      var(--ytd-watch-flexy-height-ratio)\n  ) !important;\n}\n\n/* Mobile */\nytd-item-section-renderer {\n  display: none;\n}"
     },
     {
       "id": "min-youtube/video-page/player/hide-end-cards",
@@ -24,7 +24,7 @@
       "pack": "Min youtube",
       "category": "Video page",
       "group": "Player",
-      "css": ".ytp-endscreen-content,\n  .ytp-button.ytp-endscreen-next,\n  .ytp-button.ytp-endscreen-previous {\n    display: none !important;\n  }"
+      "css": ".ytp-endscreen-content,\n.ytp-button.ytp-endscreen-next,\n.ytp-button.ytp-endscreen-previous {\n  display: none !important;\n}"
     },
     {
       "id": "min-youtube/video-page/comments/hide-comments",
@@ -35,7 +35,7 @@
       "pack": "Min youtube",
       "category": "Video page",
       "group": "Comments",
-      "css": "ytd-comments {\n    display: none;\n  }"
+      "css": "ytd-comments {\n  display: none;\n}"
     },
     {
       "id": "min-youtube/search-page/results-filtering/hide-channels",
@@ -46,7 +46,7 @@
       "pack": "Min youtube",
       "category": "Search page",
       "group": "Results filtering",
-      "css": "ytd-channel-renderer {\n    display: none;\n  }"
+      "css": "ytd-channel-renderer {\n  display: none;\n}"
     },
     {
       "id": "min-youtube/search-page/results-filtering/hide-mixes",
@@ -57,7 +57,7 @@
       "pack": "Min youtube",
       "category": "Search page",
       "group": "Results filtering",
-      "css": "ytd-radio-renderer,\n  ytm-compact-radio-renderer {\n      display: none;\n  }"
+      "css": "ytd-radio-renderer,\nytm-compact-radio-renderer {\n  display: none;\n}"
     },
     {
       "id": "min-youtube/search-page/results-filtering/hide-playlists",
@@ -68,7 +68,7 @@
       "pack": "Min youtube",
       "category": "Search page",
       "group": "Results filtering",
-      "css": "ytd-playlist-renderer {\n    display: none;\n  }"
+      "css": "ytd-playlist-renderer {\n  display: none;\n}"
     },
     {
       "id": "min-youtube/search-page/results-filtering/hide-shorts",
@@ -79,7 +79,7 @@
       "pack": "Min youtube",
       "category": "Search page",
       "group": "Results filtering",
-      "css": "/* Hide Shorts sections */\n  ytd-reel-shelf-renderer {\n    display: none;\n  }\n\n  /* Hide individual shorts*/\n  ytd-video-renderer:has(ytd-thumbnail-overlay-time-status-renderer[overlay-style=\"SHORTS\"]) {\n    display: none;\n  }\n\n  /* Hide shorts button in navbar */\n  ytd-mini-guide-entry-renderer a[title=\"Shorts\"],\n  ytd-guide-entry-renderer a[title=\"Shorts\"] {\n    display: none;\n  }"
+      "css": "/* Hide Shorts sections */\nytd-reel-shelf-renderer {\n  display: none;\n}\n\n/* Hide individual shorts*/\nytd-video-renderer:has(\n    ytd-thumbnail-overlay-time-status-renderer[overlay-style=\"SHORTS\"]\n  ) {\n  display: none;\n}\n\n/* Hide shorts button in navbar */\nytd-mini-guide-entry-renderer a[title=\"Shorts\"],\nytd-guide-entry-renderer a[title=\"Shorts\"] {\n  display: none;\n}"
     },
     {
       "id": "min-youtube/global/navbar/hide-navbar",
@@ -90,7 +90,7 @@
       "pack": "Min youtube",
       "category": "Global",
       "group": "Navbar",
-      "css": "ytd-mini-guide-renderer,\n  #guide-content,\n  #guide-button {\n    display: none !important;\n  }"
+      "css": "ytd-mini-guide-renderer,\n#guide-content,\n#guide-button {\n  display: none !important;\n}"
     },
     {
       "id": "min-youtube/global/annoyances/hide-your-youtube-history-if-off",
@@ -101,7 +101,7 @@
       "pack": "Min youtube",
       "category": "Global",
       "group": "Annoyances",
-      "css": "ytd-feed-nudge-renderer {\n    display: none;\n  }"
+      "css": "ytd-feed-nudge-renderer {\n  display: none;\n}"
     }
   ]
 }

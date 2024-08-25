@@ -13,7 +13,7 @@
       "pack": "Min reddit",
       "category": "Subreddit page",
       "group": "Feed",
-      "css": "community-highlight-carousel {\n    display: none !important;\n  }"
+      "css": "community-highlight-carousel {\n  display: none !important;\n}"
     },
     {
       "id": "min-reddit/search-page/sidebar/hide-communities",
@@ -24,7 +24,7 @@
       "pack": "Min reddit",
       "category": "Search page",
       "group": "Sidebar",
-      "css": "section[aria-label=\"Related communities\"] {\n    display: none;\n  }"
+      "css": "section[aria-label=\"Related communities\"] {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/search-page/sidebar/hide-people",
@@ -35,7 +35,7 @@
       "pack": "Min reddit",
       "category": "Search page",
       "group": "Sidebar",
-      "css": "section[aria-label=\"Related people\"] {\n    display: none;\n  }"
+      "css": "section[aria-label=\"Related people\"] {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/search-page/sidebar/hide-sidebar",
@@ -46,7 +46,7 @@
       "pack": "Min reddit",
       "category": "Search page",
       "group": "Sidebar",
-      "css": "div[data-testid=\"search-results-sidebar\"] {\n    display: none;\n  }"
+      "css": "div[data-testid=\"search-results-sidebar\"] {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/post-page/sidebar/hide-suggested-posts",
@@ -57,7 +57,7 @@
       "pack": "Min reddit",
       "category": "Post page",
       "group": "Sidebar",
-      "css": "pdp-right-rail {\n    display: none;\n  }"
+      "css": "pdp-right-rail {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/post-page/sidebar/hide-top-posts",
@@ -68,7 +68,7 @@
       "pack": "Min reddit",
       "category": "Post page",
       "group": "Sidebar",
-      "css": "div[srf-handle=\"top-posts-container\"] {\n    display: none;\n  }"
+      "css": "div[srf-handle=\"top-posts-container\"] {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/post-page/comments-section/hide-add-comment-button",
@@ -79,7 +79,7 @@
       "pack": "Min reddit",
       "category": "Post page",
       "group": "Comments section",
-      "css": "faceplate-tracker[source=\"shreddit_comment_count_button\"] {\n    display: none;\n  }"
+      "css": "faceplate-tracker[source=\"shreddit_comment_count_button\"] {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/post-page/comments-section/hide-comments-section",
@@ -90,7 +90,7 @@
       "pack": "Min reddit",
       "category": "Post page",
       "group": "Comments section",
-      "css": "div[id=\"comment-tree-content-anchor-1ez9a2d\"] {\n    display: none;\n  }\n\n  shreddit-comments-sort-dropdown[target=\"comment-tree-content-anchor-1ez9a2d\"] {\n    display: none;\n  }"
+      "css": "div[id=\"comment-tree-content-anchor-1ez9a2d\"] {\n  display: none;\n}\n\nshreddit-comments-sort-dropdown[target=\"comment-tree-content-anchor-1ez9a2d\"] {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/home-page/general/hide-feed",
@@ -101,7 +101,7 @@
       "pack": "Min reddit",
       "category": "Home page",
       "group": "General",
-      "css": "main {\n    visibility: hidden;\n  }"
+      "css": "main {\n  visibility: hidden;\n}"
     },
     {
       "id": "min-reddit/home-page/general/hide-popular-communities",
@@ -112,7 +112,7 @@
       "pack": "Min reddit",
       "category": "Home page",
       "group": "General",
-      "css": "aside[aria-label=\"Popular Communities\"] {\n    display: none;\n  }"
+      "css": "aside[aria-label=\"Popular Communities\"] {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/home-page/general/hide-posts-carousel",
@@ -123,7 +123,7 @@
       "pack": "Min reddit",
       "category": "Home page",
       "group": "General",
-      "css": "search-dynamic-id-cache-controller {\n    display: none;\n  }"
+      "css": "search-dynamic-id-cache-controller {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/global/search-input/hide-trending-today",
@@ -134,7 +134,7 @@
       "pack": "Min reddit",
       "category": "Global",
       "group": "Search input",
-      "javascript": "const search = document.querySelector(\"reddit-search-large\")\n\n  const hideElements = () => {\n    search.shadowRoot.querySelector(\"#reddit-trending-searches-partial-container\")?.style.setProperty(\"display\", \"none\")\n    search.shadowRoot.querySelector('svg[icon-name=\"rising-outline\"]')?.parentElement?.style.setProperty(\"display\", \"none\")\n  }\n\n  hideElements()\n\n  new MutationObserver(hideElements).observe(search.shadowRoot, { childList: true, subtree: true })"
+      "javascript": "const search = document.querySelector(\"reddit-search-large\");\n\nconst hideElements = () => {\n  search.shadowRoot\n    .querySelector(\"#reddit-trending-searches-partial-container\")\n    ?.style.setProperty(\"display\", \"none\");\n  search.shadowRoot\n    .querySelector('svg[icon-name=\"rising-outline\"]')\n    ?.parentElement?.style.setProperty(\"display\", \"none\");\n};\n\nhideElements();\n\nnew MutationObserver(hideElements).observe(search.shadowRoot, {\n  childList: true,\n  subtree: true,\n});"
     },
     {
       "id": "min-reddit/global/navbar/hide-settings-menu",
@@ -145,7 +145,7 @@
       "pack": "Min reddit",
       "category": "Global",
       "group": "Navbar",
-      "css": "nav div.flex.items-center.justify-center:has(#expand-user-drawer-button) {\n        display: none;\n    }"
+      "css": "nav div.flex.items-center.justify-center:has(#expand-user-drawer-button) {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/global/left-sidebar/hide-navbar",
@@ -156,7 +156,7 @@
       "pack": "Min reddit",
       "category": "Global",
       "group": "Left sidebar",
-      "css": "#left-sidebar-container, reddit-sidebar-nav, #hamburger-button-tooltip {\n    display: none !important;\n  }"
+      "css": "#left-sidebar-container,\nreddit-sidebar-nav,\n#hamburger-button-tooltip {\n  display: none !important;\n}"
     },
     {
       "id": "min-reddit/global/left-sidebar/hide-popular-button",
@@ -167,7 +167,7 @@
       "pack": "Min reddit",
       "category": "Global",
       "group": "Left sidebar",
-      "css": "left-nav-top-section[popular] {\n    display: none;\n  }"
+      "css": "left-nav-top-section[popular] {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/global/left-sidebar/hide-recent-section",
@@ -178,7 +178,7 @@
       "pack": "Min reddit",
       "category": "Global",
       "group": "Left sidebar",
-      "css": "reddit-recent-pages {\n    display: none;\n  }"
+      "css": "reddit-recent-pages {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/global/left-sidebar/hide-resources-section",
@@ -189,7 +189,7 @@
       "pack": "Min reddit",
       "category": "Global",
       "group": "Left sidebar",
-      "css": "details:has(> summary[aria-controls=\"RESOURCES\"]) {\n    display: none;\n  }"
+      "css": "details:has(> summary[aria-controls=\"RESOURCES\"]) {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/global/left-sidebar/hide-topics-section",
@@ -200,7 +200,7 @@
       "pack": "Min reddit",
       "category": "Global",
       "group": "Left sidebar",
-      "css": "details:has(> summary[aria-controls=\"TOPICS\"]) {\n    display: none;\n  }"
+      "css": "details:has(> summary[aria-controls=\"TOPICS\"]) {\n  display: none;\n}"
     },
     {
       "id": "min-reddit/_setup/post-page",
@@ -211,7 +211,7 @@
       "pack": "Min reddit",
       "category": "_setup",
       "group": "_setup",
-      "javascript": "const h2 = document.querySelectorAll(\"h2\");\n  const topPostsH2 = Array.from(h2).find(element => element.textContent.includes(\"Top Posts\"));\n  topPostsH2.parentNode.setAttribute(\"srf-handle\", \"top-posts-container\");"
+      "javascript": "const h2 = document.querySelectorAll(\"h2\");\nconst topPostsH2 = Array.from(h2).find((element) =>\n  element.textContent.includes(\"Top Posts\"),\n);\ntopPostsH2.parentNode.setAttribute(\"srf-handle\", \"top-posts-container\");"
     }
   ]
 }

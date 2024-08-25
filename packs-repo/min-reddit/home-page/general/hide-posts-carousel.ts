@@ -1,12 +1,13 @@
 import createBoostFactory from "@/packs-builder/createBoostFactory"
+import { css } from "@/packs-builder/templateLiterals"
 
 const createBoost = createBoostFactory(import.meta.url)
 
 export default createBoost({
   matchPatterns: ["*://*.reddit.com/"],
-  css: /* css */ `
-  search-dynamic-id-cache-controller {
-    display: none;
-  }
+  css: await css`
+    search-dynamic-id-cache-controller {
+      display: none;
+    }
   `,
 })

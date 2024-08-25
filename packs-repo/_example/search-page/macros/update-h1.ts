@@ -1,10 +1,11 @@
 import createBoostFactory from "@/packs-builder/createBoostFactory"
+import { js } from "@/packs-builder/templateLiterals"
 
 const createBoost = createBoostFactory(import.meta.url)
 
 export default createBoost({
   matchPatterns: ["*://*.example.com/*"],
-  javascript: `
+  javascript: await js`
   const button = document.createElement('button');
   button.textContent = 'Click me';
 

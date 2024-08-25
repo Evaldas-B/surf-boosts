@@ -1,10 +1,11 @@
 import createBoostFactory from "@/packs-builder/createBoostFactory"
+import { js } from "@/packs-builder/templateLiterals"
 
 const createBoost = createBoostFactory(import.meta.url)
 
 export default createBoost({
   matchPatterns: ["*://*.reddit.com/*"],
-  javascript: `
+  javascript: await js`
   const search = document.querySelector("reddit-search-large")
 
   const hideElements = () => {
