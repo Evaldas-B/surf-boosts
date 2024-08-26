@@ -49,10 +49,22 @@ export default function ConfigTab() {
     setBoosts(boosts.filter((boost) => boost.id !== boostId))
     setEnabledBoostsIds(enabledBoostsIds.filter((id) => id !== boostId))
 
-    setNavigation({
-      path: "/boost-pack",
-      props: { boostPackId: deletedBoost?.pack },
-    })
+    const numOfRemainingBoostsInPack = boosts.filter(
+      (boost) => boost.pack === deletedBoost.pack,
+    ).length
+
+    console.log({ numOfRemainingBoostsInPack })
+
+    if (numOfRemainingBoostsInPack === 1) {
+      setNavigation({
+        path: "/",
+      })
+    } else {
+      setNavigation({
+        path: "/boost-pack",
+        props: { boostPackId: deletedBoost.pack },
+      })
+    }
   }
 
   const { isPublic } = form.getValues()
