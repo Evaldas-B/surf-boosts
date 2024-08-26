@@ -1,6 +1,6 @@
 {
   "name": "SurfBoosts",
-  "description": "This tool lets you inject custom CSS and JavaScript into any website, allowing you to customize the appearance of webpages or add new features. It also connects to a public marketplace where you can download additional Boosts",
+  "description": "Inject CSS and JavaScript into websites to customize appearance and add features. Connect to a marketplace for additional Boosts.",
   "private": true,
   "version": "0.0.4",
   "type": "module",

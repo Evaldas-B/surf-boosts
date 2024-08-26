@@ -6,6 +6,6 @@ export default defineConfig({
   extensionApi: "chrome",
   manifest: {
     host_permissions: ["<all_urls>"],
-    permissions: ["storage", "tabs", "scripting"],
+    permissions: ["storage", "activeTab", "scripting"],
   },
 })
